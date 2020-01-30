@@ -11,12 +11,17 @@ import static org.junit.Assert.assertEquals;
 
 
 public class SegmentOptimizedTest {
+    /**
+     * Constants
+     */
+    protected final static double precision = 0.0001;
 
-    private final static double precision = 0.0001;
-
-    private Point p1;
-    private Point p2;
-    private Segment s1;
+    /**
+     * Attributes
+     */
+    protected Point p1;
+    protected Point p2;
+    protected Segment s1;
 
 
     @Before
