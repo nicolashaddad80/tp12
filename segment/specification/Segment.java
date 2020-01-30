@@ -6,5 +6,4 @@ public interface Segment {
 
     void translate(double dx, double dy);
 
-    void refreshLength();
 }
