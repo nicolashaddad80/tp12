@@ -5,16 +5,16 @@ import fr.cnam.tp12.segment.specification.Segment;
 
 public class SegmentOptimized implements Segment {
     /**
-     * Attibutes
+     * Attributes
      */
-    private Point p1;
+    protected Point p1;
 
-    private Point p2;
+    protected Point p2;
 
     /*
     Optimized
      */
-    private double lengh;
+    protected double length;
 
     /**
      * Constructor
@@ -23,16 +23,16 @@ public class SegmentOptimized implements Segment {
 
         this.p1 = a_P1;
         this.p2 = a_P2;
-        this.lengh = this.p1.distance(this.p2);
+        this.setLength();
     }
 
     /**
-     * methodes
+     * methods
      */
 
     @Override
     public double getLength() {
-        return this.lengh;
+        return this.length;
     }
 
     @Override
@@ -42,8 +42,8 @@ public class SegmentOptimized implements Segment {
         this.p2.translate(dx, dy);
     }
 
-    @Override
-    public void refreshLength() {
-        this.lengh = this.p1.distance(this.p2);
+    protected void setLength() {
+        this.length = this.p1.distance(this.p2);
     }
+
 }
