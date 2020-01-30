@@ -1,4 +1,4 @@
-package fr.cnam.tp12.specification.point;
+package fr.cnam.tp12.point.specification;
 
 public interface Point {
     double getX();

@@ -1,7 +1,7 @@
-package fr.cnam.tp12.specification;
+package fr.cnam.tp12.segment;
 
-import fr.cnam.tp12.specification.point.Point;
-import fr.cnam.tp12.specification.segment.Segment;
+import fr.cnam.tp12.point.specification.Point;
+import fr.cnam.tp12.segment.specification.Segment;
 
 public class SegmentOptimized implements Segment {
     /**
