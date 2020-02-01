@@ -1,6 +1,6 @@
 package fr.cnam.tp12.point.specification;
 
-import fr.cnam.tp12.segment.SegmentOptimized2;
+
 
 public interface Point {
     double getX();

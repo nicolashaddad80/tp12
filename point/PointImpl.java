@@ -2,16 +2,16 @@ package fr.cnam.tp12.point;
 
 import fr.cnam.tp12.point.specification.Point;
 
-public class PointOptimized implements Point {
+public class PointImpl implements Point {
     /**
      * L'Abscisse de notre Point
      */
-    private double x;
+    protected double x;
 
     /**
      * L'Ordonnee de notre Point
      */
-    private double y;
+    protected double y;
 
     /**
      * Le constructeur de notre Point
@@ -19,7 +19,7 @@ public class PointOptimized implements Point {
      * @param a_x : L'Abscisse de notre Point
      * @param a_y : L'Ordonnee de notre Point
      */
-    public PointOptimized(double a_x, double a_y) {
+    public PointImpl(double a_x, double a_y) {
         this.x = a_x;
         this.y = a_y;
     }

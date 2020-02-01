@@ -1,6 +1,8 @@
 package fr.cnam.tp12.segment.specification;
 
-public interface Segment {
+import fr.cnam.tp12.mypatterns.MyObserver;
+
+public interface Segment extends MyObserver {
 
     double getLength();
 

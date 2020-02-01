@@ -1,55 +1,67 @@
 package fr.cnam.tp12.tests;
 
-import fr.cnam.tp12.point.PointOptimized;
-import fr.cnam.tp12.point.specification.Point;
+import fr.cnam.tp12.mypatterns.OptimizedClass;
+import fr.cnam.tp12.point.PointImpl;
+import fr.cnam.tp12.point.PointObservable;
 import fr.cnam.tp12.segment.SegmentOptimized;
 import fr.cnam.tp12.segment.specification.Segment;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class SegmentOptimizedTest {
-    /**
-     * Constants
-     */
-    protected final static double precision = 0.0001;
+    private final static double e = Double.MIN_VALUE;
 
-    /**
-     * Attributes
-     */
-    protected Point p1;
-    protected Point p2;
-    protected Segment s1;
+    @Test
+    public void test1() {
+        PointObservable p1 = new PointObservable(new PointImpl(0, 0));
+        PointObservable p2 = new PointObservable(new PointImpl(5, 0));
+        Segment s = new SegmentOptimized(p1, p2);
+        assertEquals(5, s.getLength(), e);
 
-
-    @Before
-    public void setUp() throws Exception {
-        this.p1 = new PointOptimized(0, 0);
-        this.p2 = new PointOptimized(0, 10);
-        this.s1 = new SegmentOptimized(p1, p2);
+        p2.translate(-2, 0);
+        assertEquals(3, s.getLength(), e);
     }
 
     @Test
-    public void getLengthWithoutAnyTranslatingTest() {
-        //Must be pass in this Part #1 implementation
-        assertEquals(10, this.s1.getLength(), precision);
+    public void test2() {
+        PointObservable p1 = new PointObservable(new PointImpl(0, 0));
+        PointObservable p2 = new PointObservable(new PointImpl(5, 0));
+        PointObservable p3 = new PointObservable(new PointImpl(10, 0));
+        Segment s1 = new SegmentOptimized(p1, p2);
+        Segment s2 = new SegmentOptimized(p2, p3);
+        assertEquals(5, s1.getLength(), e);
+        assertEquals(5, s2.getLength(), e);
+
+        p2.translate(-2, 0);
+        assertEquals(3, s1.getLength(), e);
+        assertEquals(7, s2.getLength(), e);
     }
 
     @Test
-    public void getLengthWithTranslatingSegment() {
-        //Must be pass in Part #1 implementation
-        //Do segment Translation
-        this.s1.translate(20, 20);
-        assertEquals(10, this.s1.getLength(), precision);
+    public void test3() {
+        PointObservable p1 = new PointObservable(new PointImpl(1, 2));
+
+        for (int i = 0; i < 100; i++) {
+            OptimizedClass s = new SegmentOptimized(new PointObservable(new PointImpl(i, i)), p1);
+            s.destroy();
+        }
+
+        assertEquals(0, p1.countObservers());
     }
 
     @Test
-    public void getLengthWithTranslatingPointOnly() {
-        //Must be fail in Part #1 implementation
-        //Do Point Translation
-        this.p1.translate(0, -10);
-        assertEquals(20, this.s1.getLength(), precision);
+    public void test4() {
+        PointObservable p1 = new PointObservable(new PointImpl(0, 0));
+        PointObservable p2 = new PointObservable(new PointImpl(5, 0));
+        PointObservable p3 = new PointObservable(new PointImpl(10, 0));
+        Segment s1 = new SegmentOptimized(p1, p2);
+        Segment s2 = new SegmentOptimized(p2, p3);
+        assertEquals(5, s1.getLength(), e);
+        assertEquals(5, s2.getLength(), e);
+
+        s1.translate(-2, 0);
+        assertEquals(5, s1.getLength(), e);
+        assertEquals(7, s2.getLength(), e);
     }
 }
