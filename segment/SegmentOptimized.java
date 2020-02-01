@@ -56,7 +56,7 @@ public class SegmentOptimized implements Segment {
     @Override
     public void destroy() {
             this.p1.deleteObserver(this);
-            this.p1.deleteObserver(this);
+            this.p2.deleteObserver(this);
     }
 
 }
