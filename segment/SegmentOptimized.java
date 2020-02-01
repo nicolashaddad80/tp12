@@ -7,28 +7,18 @@ import fr.cnam.tp12.segment.specification.Segment;
 public class SegmentOptimized implements Segment {
 
     /**
-     * Internal Classes
-     */
-    private class LengthUpdate implements MyObserver {
-        @Override
-        public void update() {
-            updateLength();
-        }
-    }
-
-
-    /**
      * Attributes
      */
+    /* Points */
     private PointObservable p1;
-
     private PointObservable p2;
 
+    /*Points Observers*/
     private MyObserver p1Observer;
     private MyObserver p2Observer;
 
     /*
-    Optimized
+    Optimized Attributes
      */
     private double length;
 
@@ -36,11 +26,11 @@ public class SegmentOptimized implements Segment {
      * Constructor
      */
     public SegmentOptimized(PointObservable a_P1, PointObservable a_P2) {
-        this.p1Observer = new LengthUpdate();
+        this.p1Observer = this::updateLength;
         this.p1 = a_P1;
         this.p1.addObserver(this.p1Observer);
 
-        this.p2Observer = new LengthUpdate();
+        this.p2Observer = this::updateLength;
         this.p2 = a_P2;
         this.p2.addObserver(p2Observer);
         this.updateLength();
