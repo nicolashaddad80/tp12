@@ -1,6 +1,6 @@
 package fr.cnam.tp12.mypatterns;
 
-public interface MyObserver extends OptimizedClass {
+public interface MyObserver{
 
 
     void update();
