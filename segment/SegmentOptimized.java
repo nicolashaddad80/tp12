@@ -9,16 +9,10 @@ public class SegmentOptimized implements Segment {
     /**
      * Internal Classes
      */
-    private static class LengthUpdate implements MyObserver{
-        private SegmentOptimized segmentOptimized;
-
-        public LengthUpdate(SegmentOptimized segmentOptimized) {
-            this.segmentOptimized = segmentOptimized;
-        }
-
+    private class LengthUpdate implements MyObserver {
         @Override
         public void update() {
-            this.segmentOptimized.updateLength();
+            updateLength();
         }
     }
 
@@ -42,11 +36,11 @@ public class SegmentOptimized implements Segment {
      * Constructor
      */
     public SegmentOptimized(PointObservable a_P1, PointObservable a_P2) {
-        this.p1Observer = new LengthUpdate(this);
+        this.p1Observer = new LengthUpdate();
         this.p1 = a_P1;
         this.p1.addObserver(this.p1Observer);
 
-        this.p2Observer = new LengthUpdate(this);
+        this.p2Observer = new LengthUpdate();
         this.p2 = a_P2;
         this.p2.addObserver(p2Observer);
         this.updateLength();
@@ -68,7 +62,7 @@ public class SegmentOptimized implements Segment {
         this.p2.translate(dx, dy);
     }
 
-    public void updateLength() {
+    private void updateLength() {
         this.length = this.p1.distance(this.p2);
     }
 
