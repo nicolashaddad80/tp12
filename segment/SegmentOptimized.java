@@ -1,29 +1,31 @@
 package fr.cnam.tp12.segment;
 
-import fr.cnam.tp12.point.specification.Point;
+import fr.cnam.tp12.point.PointObservable;
 import fr.cnam.tp12.segment.specification.Segment;
 
 public class SegmentOptimized implements Segment {
     /**
      * Attributes
      */
-    protected Point p1;
+    private PointObservable p1;
 
-    protected Point p2;
+    private PointObservable p2;
 
     /*
     Optimized
      */
-    protected double length;
+    private double length;
 
     /**
      * Constructor
      */
-    public SegmentOptimized(Point a_P1, Point a_P2) {
+    public SegmentOptimized(PointObservable a_P1, PointObservable a_P2) {
 
         this.p1 = a_P1;
+        this.p1.addObserver(this);
         this.p2 = a_P2;
-        this.setLength();
+        this.p2.addObserver(this);
+        this.updateLength();
     }
 
     /**
@@ -42,8 +44,19 @@ public class SegmentOptimized implements Segment {
         this.p2.translate(dx, dy);
     }
 
-    protected void setLength() {
+    private void updateLength() {
         this.length = this.p1.distance(this.p2);
+    }
+
+    @Override
+    public void update() {
+        this.updateLength();
+    }
+
+    @Override
+    public void destroy() {
+            this.p1.deleteObserver(this);
+            this.p1.deleteObserver(this);
     }
 
 }
