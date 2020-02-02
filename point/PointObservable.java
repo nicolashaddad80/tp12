@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PointObservable extends PointImpl implements MyObservable {
 
-    private final List<MyObserver> observers;
+    private  List<MyObserver> observers;
 
     public PointObservable(Point point) {
         super(point.getX(), point.getY());
