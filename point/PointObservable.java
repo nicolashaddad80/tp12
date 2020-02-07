@@ -42,7 +42,7 @@ public class PointObservable extends PointImpl implements MyObservable {
     public void notifyObservers() {
 
         for (MyObserver observer : this.observers) {
-            observer.update();
+            observer.update(this);
         }
     }
 }

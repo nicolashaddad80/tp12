@@ -1,8 +1,8 @@
 package fr.cnam.tp12.circle;
 
 import fr.cnam.tp12.circle.specification.Circle;
-import fr.cnam.tp12.mypatterns.MyObserver;
 import fr.cnam.tp12.point.PointObservable;
+
 
 public class CircleOptimized implements Circle {
 
@@ -13,9 +13,6 @@ public class CircleOptimized implements Circle {
     private PointObservable centerPoint;
     private PointObservable circonfPoint;
 
-    /*Points Observers*/
-    private MyObserver centerObserver;
-    private MyObserver circonfObserver;
 
     /**
      * Le Rayon de Notre Cercle
@@ -27,13 +24,12 @@ public class CircleOptimized implements Circle {
      * Constructor
      */
     public CircleOptimized(PointObservable centerPoint, PointObservable circonfPoint) {
-        this.centerObserver = this::translateCenter;
-        this.centerPoint = centerPoint;
-        this.centerPoint.addObserver(this.centerObserver);
 
-        this.circonfObserver = this::updateRadius;
+        this.centerPoint = centerPoint;
+        this.centerPoint.addObserver(this);
+
         this.circonfPoint = circonfPoint;
-        this.circonfPoint.addObserver(this.circonfObserver);
+        this.circonfPoint.addObserver(this);
 
         this.updateRadius();
     }
@@ -65,7 +61,14 @@ public class CircleOptimized implements Circle {
 
     @Override
     public void destroy() {
-        this.centerPoint.deleteObserver(this.centerObserver);
-        this.circonfPoint.deleteObserver(this.circonfObserver);
+        this.centerPoint.deleteObserver(this);
+        this.circonfPoint.deleteObserver(this);
     }
+
+    @Override
+    public void update(Object observable) {
+        if(observable==this.centerPoint) this.translateCenter();
+        if(observable==this.circonfPoint) this.updateRadius();
+    }
+
 }
