@@ -1,9 +1,8 @@
 package fr.cnam.tp12.circle;
 
 import fr.cnam.tp12.circle.specification.Circle;
-import fr.cnam.tp12.mypatterns.MyObserver;
 import fr.cnam.tp12.point.PointObservable;
-import fr.cnam.tp12.point.specification.Point;
+
 
 public class CircleOptimized implements Circle {
 

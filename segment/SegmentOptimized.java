@@ -1,5 +1,4 @@
 package fr.cnam.tp12.segment;
-import fr.cnam.tp12.mypatterns.OptimizedClass;
 import fr.cnam.tp12.point.PointObservable;
 import fr.cnam.tp12.segment.specification.Segment;
 
